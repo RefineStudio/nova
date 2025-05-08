@@ -36,7 +36,8 @@ Renders a numeric value formatted as USD, with special logic for very small valu
 
 ```tsx
 <Price value={1500} /> // $1,500.00
-<Price value={0.00004567} /> // $0.00004567
+<Price value={0.000004567} /> // $0.0⁵4567
+<Price value={0.00004567} showSymbol={false} /> // 0.00004567
 <Price value={123.456} showSymbol={false} /> // 123.46
 ```
 
