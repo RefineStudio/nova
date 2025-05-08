@@ -50,11 +50,11 @@ Utility for formatting monetary values in USD, with two styles:
 
 Formats the value as a complete number with a currency symbol.
 
-| Parameter               | Type                       | Default | Description                                          |                        |
-| ----------------------- | -------------------------- | ------- | ---------------------------------------------------- | ---------------------- |
-| `value`                 | `string                    | number` | `0`                                                  | Value to be formatted. |
-| `options`               | `Intl.NumberFormatOptions` | —       | Additional options from the `Intl.NumberFormat` API. |                        |
-| `minimumFractionDigits` | `number`                   | `2`     | Minimum decimal places to show.                      |                        |
+| Parameter               | Type                       | Default  | Description                                          |                        |
+| ----------------------- | -------------------------- | -------- | ---------------------------------------------------- | ---------------------- |
+| `value`                 | `string`                   | `number` | `0`                                                  | Value to be formatted. |
+| `options`               | `Intl.NumberFormatOptions` | —        | Additional options from the `Intl.NumberFormat` API. |                        |
+| `minimumFractionDigits` | `number`                   | `2`      | Minimum decimal places to show.                      |                        |
 
 **Example:**
 
@@ -69,10 +69,10 @@ usdFormatter.fullValue.format(1234.567);
 
 Formats the value in a compact style (e.g., thousand → K, million → M).
 
-| Parameter | Type                       | Default | Description                |                        |
-| --------- | -------------------------- | ------- | -------------------------- | ---------------------- |
-| `value`   | `string                    | number` | `0`                        | Value to be formatted. |
-| `options` | `Intl.NumberFormatOptions` | —       | Customization with `Intl`. |                        |
+| Parameter | Type                       | Default  | Description                |                        |
+| --------- | -------------------------- | -------- | -------------------------- | ---------------------- |
+| `value`   | `string`                   | `number` | `0`                        | Value to be formatted. |
+| `options` | `Intl.NumberFormatOptions` | —        | Customization with `Intl`. |                        |
 
 **Example:**
 
