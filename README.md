@@ -1,26 +1,20 @@
-## 📦 Price Formatter Utilities
-
-Nova fornece utilitários para formatação de valores monetários em dólares americanos, com suporte tanto para valores inteiros quanto fracionários pequenos, além de um componente React pronto para uso.
-
----
-
 ## 📥 Installation
 
 ```bash
 npm i nova
-# ou
+# or
 pnpm i nova
-# ou
+# or
 yarn add nova
 ```
 
-Importando:
+Importing:
 
 ```ts
 import Nova from "nova";
 ```
 
-Ou via CDN:
+Or via CDN:
 
 ```html
 <script src="https://unpkg.com/nova@1.0.0/dist/nova.min.js"></script>
@@ -30,15 +24,15 @@ Ou via CDN:
 
 ## 💵 Price Component
 
-Renderiza um valor numérico formatado como USD, com lógica especial para valores muito pequenos (ex: `0.00000123`).
+Renders a numeric value formatted as USD, with special logic for very small values (e.g., `0.00000123`).
 
-| Prop         | Tipo      | Padrão | Descrição                                      |
-| ------------ | --------- | ------ | ---------------------------------------------- |
-| `value`      | `number`  | —      | Valor numérico a ser formatado.                |
-| `showSymbol` | `boolean` | `true` | Exibe ou não o símbolo `$`.                    |
-| `decimal`    | `number`  | `2`    | Número mínimo de casas decimais na formatação. |
+| Prop         | Type      | Default | Description                                     |
+| ------------ | --------- | ------- | ----------------------------------------------- |
+| `value`      | `number`  | —       | Numeric value to be formatted.                  |
+| `showSymbol` | `boolean` | `true`  | Whether or not to display the `$` symbol.       |
+| `decimal`    | `number`  | `2`     | Minimum number of decimal places in formatting. |
 
-**Exemplos:**
+**Examples:**
 
 ```tsx
 <Price value={1500} /> // $1,500.00
@@ -50,19 +44,19 @@ Renderiza um valor numérico formatado como USD, com lógica especial para valor
 
 ## 📚 usdFormatter API
 
-Utilitário para formatação de valores monetários em USD, com dois estilos:
+Utility for formatting monetary values in USD, with two styles:
 
 ### 🔹 `usdFormatter.fullValue.format`
 
-Formata o valor como um número completo com símbolo monetário.
+Formats the value as a complete number with a currency symbol.
 
-| Parâmetro               | Tipo                       | Padrão  | Descrição                                     |                        |
-| ----------------------- | -------------------------- | ------- | --------------------------------------------- | ---------------------- |
-| `value`                 | `string`                   | number` | `0`                                           | Valor a ser formatado. |
-| `options`               | `Intl.NumberFormatOptions` | —       | Opções adicionais da API `Intl.NumberFormat`. |                        |
-| `minimumFractionDigits` | `number`                   | `2`     | Mínimo de casas decimais a mostrar.           |                        |
+| Parameter               | Type                       | Default | Description                                          |                        |
+| ----------------------- | -------------------------- | ------- | ---------------------------------------------------- | ---------------------- |
+| `value`                 | `string                    | number` | `0`                                                  | Value to be formatted. |
+| `options`               | `Intl.NumberFormatOptions` | —       | Additional options from the `Intl.NumberFormat` API. |                        |
+| `minimumFractionDigits` | `number`                   | `2`     | Minimum decimal places to show.                      |                        |
 
-**Exemplo:**
+**Example:**
 
 ```ts
 usdFormatter.fullValue.format(1234.567);
@@ -73,14 +67,14 @@ usdFormatter.fullValue.format(1234.567);
 
 ### 🔹 `usdFormatter.compact.format`
 
-Formata o valor em estilo compacto (ex: mil → K, milhão → M).
+Formats the value in a compact style (e.g., thousand → K, million → M).
 
-| Parâmetro | Tipo                       | Padrão  | Descrição                  |                        |
+| Parameter | Type                       | Default | Description                |                        |
 | --------- | -------------------------- | ------- | -------------------------- | ---------------------- |
-| `value`   | `string`                   | number` | `0`                        | Valor a ser formatado. |
-| `options` | `Intl.NumberFormatOptions` | —       | Personalização com `Intl`. |                        |
+| `value`   | `string                    | number` | `0`                        | Value to be formatted. |
+| `options` | `Intl.NumberFormatOptions` | —       | Customization with `Intl`. |                        |
 
-**Exemplo:**
+**Example:**
 
 ```ts
 usdFormatter.compact.format(1500);
