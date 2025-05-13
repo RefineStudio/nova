@@ -6,14 +6,21 @@ export function Price({
   showSymbol = true,
   decimal = 2,
   options = {},
+  compact = false,
 }: {
   value: number | string;
   showSymbol?: boolean;
   decimal?: number;
   options?: Intl.NumberFormatOptions;
+  compact?: boolean;
 }) {
   const num = Number(value);
   if (isNaN(num)) return <span>Invalid</span>;
+
+  if (compact && Math.abs(num) >= 1_000_000) {
+    const formatted = usdFormatter.compact.format(num, options);
+    return <span>{showSymbol ? formatted : formatted.replace("$", "")}</span>;
+  }
 
   if (num >= 0.1) {
     const formatted = usdFormatter.fullValue.format(num, options, decimal);
