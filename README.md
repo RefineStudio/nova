@@ -8,16 +8,33 @@ pnpm i nova
 yarn add nova
 ```
 
+This package requires Tailwind CSS as a peer dependency. If you don't have Tailwind CSS installed yet:
+
+```bash
+npm i tailwindcss
+npx tailwindcss init
+```
+
+Then configure your Tailwind CSS in your project:
+
+```js
+// tailwind.config.js
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/nova/**/*.{js,jsx,ts,tsx}", // Add this line to include Nova components
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
 Importing:
 
 ```ts
-import Nova from "nova";
-```
-
-Or via CDN:
-
-```html
-<script src="https://unpkg.com/nova@1.0.0/dist/nova.min.js"></script>
+import { Price, usdFormatter } from "nova";
 ```
 
 ---

@@ -4,20 +4,18 @@ export function Price({
   value,
   showSymbol = true,
   decimal = 2,
+  options = {},
 }: {
-  value: number;
+  value: number | string;
   showSymbol?: boolean;
   decimal?: number;
+  options?: Intl.NumberFormatOptions;
 }) {
   const num = Number(value);
   if (isNaN(num)) return <span>Invalid</span>;
 
   if (num >= 0.1) {
-    const formatted = usdFormatter.fullValue.format(
-      num,
-      { signDisplay: "exceptZero" },
-      decimal
-    );
+    const formatted = usdFormatter.fullValue.format(num, options, decimal);
     return <span>{showSymbol ? formatted : formatted.replace("$", "")}</span>;
   }
 
@@ -26,11 +24,7 @@ export function Price({
   const match = decimalPart.match(/^(0*)(\d+)/);
 
   if (!match) {
-    const formatted = usdFormatter.fullValue.format(
-      num,
-      { signDisplay: "exceptZero" },
-      decimal
-    );
+    const formatted = usdFormatter.fullValue.format(num, options, decimal);
     return <span>{showSymbol ? formatted : formatted.replace("$", "")}</span>;
   }
 
@@ -39,12 +33,15 @@ export function Price({
   const significant = digits.slice(0, 4);
 
   if (z <= 4) {
-    return (
-      <span>
-        {showSymbol ? "$" : ""}
-        {`0.${"0".repeat(z)}${significant}`}
-      </span>
+    const decimalBigNumber = z + significant.length;
+    const sign = num < 0 ? -1 : 1;
+    const bigNumber = sign * Number(`0.${"0".repeat(z)}${significant}`);
+    const formatted = usdFormatter.fullValue.format(
+      bigNumber,
+      options,
+      decimalBigNumber
     );
+    return <span>{showSymbol ? formatted : formatted.replace("$", "")}</span>;
   }
 
   return (
