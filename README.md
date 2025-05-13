@@ -37,6 +37,20 @@ Importing:
 import { Price, usdFormatter } from "nova";
 ```
 
+### 🫘 Bundle Size
+
+This package is optimized for tree-shaking:
+
+```js
+// This only imports the Price component
+import { Price } from "nova";
+
+// This only imports the usdFormatter utility
+import { usdFormatter } from "nova";
+```
+
+The entire package is very lightweight (~4KB) and has minimal dependencies.
+
 ---
 
 ## 💵 Price Component

@@ -1,8 +1,14 @@
 # Source files
 src/
 
+# Example files
+example/
+
 # TypeScript config
 tsconfig.json
+tsconfig.test.json
+jest.config.js
+.eslintrc.js
 
 # Development files
 node_modules/
@@ -11,6 +17,10 @@ node_modules/
 .git/
 .github/
 *.log
+coverage/
+package-lock.json
+*.test.tsx
+*.test.ts
 
 # Don't ignore dist
 !dist/

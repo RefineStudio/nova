@@ -1,3 +1,4 @@
+import React from "react";
 import { usdFormatter } from "../utils/usdFormatter";
 
 export function Price({
