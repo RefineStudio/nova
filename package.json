@@ -1,5 +1,5 @@
 {
-  "name": "nova",
+  "name": "@refinestudio/nova",
   "version": "1.0.0",
   "description": "React price component with Tailwind CSS styling",
   "main": "dist/index.js",
@@ -58,5 +58,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@refinestudio/nova": "^1.0.0"
   }
 }
