@@ -61,6 +61,18 @@ Renders a numeric value formatted as currency, with special logic for very small
 <Price value={1500000} compact={true} /> // $1.5M
 ```
 
+| Params            | Value         | Formatted Price  |
+|-------------------|---------------|-------------------|
+| DEFAULT           | 15320.2       | $15,320.20        |
+| DEFAULT           | 1532000.2     | $1,532,000        |
+| DEFAULT           | 0.00004567    | $0.00004567       |
+| DEFAULT           | 0.000004567   | $0.0<sub>5</sub>4567|
+| SHOWSYMBOL=false  | 0.006         | 0.006             |
+| CURRENCY=EUR      | 15320.2       | €15.320,20        |
+| COMPACT           | 1532000.2     | $1.53M            |
+| COMPACT           | 1532000000.2  | $1.53B            |
+
+
 ---
 
 ## currencyFormatter API
