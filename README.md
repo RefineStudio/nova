@@ -76,6 +76,7 @@ Renders a numeric value formatted as currency, with special logic for very small
 | CURRENCY=EUR      | 15320.2       | €15.320,20        |
 | COMPACT           | 1532000.2     | $1.53M            |
 | COMPACT           | 1532000000.2  | $1.53B            |
+| TOKEN=BTC         | 0.007         | 0.007 BTC         |
 
 
 ---
