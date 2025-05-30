@@ -8,6 +8,7 @@ export function Price({
   options = {},
   compact = false,
   currency = "USD",
+  token,
 }: {
   value: number | string;
   showSymbol?: boolean;
@@ -15,18 +16,26 @@ export function Price({
   options?: Intl.NumberFormatOptions;
   compact?: boolean;
   currency?: string;
+  token?: string;
 }) {
-  const formattingOptions = { ...options, currency };
+  const isToken = Boolean(token);
+  const effectiveCurrency = isToken ? "USD" : currency;
+  const formattingOptions = { ...options, currency: effectiveCurrency };
+
   const num = Number(value);
   if (isNaN(num)) return <span>Invalid</span>;
 
+  const formatValue = (formatted: string) => {
+    const clean = formatted.replace(/[^\d.,\s-]/g, "");
+    if (isToken) {
+      return <span>{`${clean} ${token}`}</span>;
+    }
+    return <span>{showSymbol ? formatted : clean}</span>;
+  };
+
   if (compact && Math.abs(num) >= 1_000_000) {
     const formatted = currencyFormatter.compact.format(num, formattingOptions);
-    return (
-      <span>
-        {showSymbol ? formatted : formatted.replace(/[^\d.,\s-]/g, "")}
-      </span>
-    );
+    return formatValue(formatted);
   }
 
   if (num >= 0.1) {
@@ -35,11 +44,7 @@ export function Price({
       formattingOptions,
       decimal
     );
-    return (
-      <span>
-        {showSymbol ? formatted : formatted.replace(/[^\d.,\s-]/g, "")}
-      </span>
-    );
+    return formatValue(formatted);
   }
 
   const numStr = num.toString();
@@ -52,11 +57,7 @@ export function Price({
       formattingOptions,
       decimal
     );
-    return (
-      <span>
-        {showSymbol ? formatted : formatted.replace(/[^\d.,\s-]/g, "")}
-      </span>
-    );
+    return formatValue(formatted);
   }
 
   const [, zeros, digits] = match;
@@ -72,26 +73,25 @@ export function Price({
       formattingOptions,
       decimalBigNumber
     );
-    return (
-      <span>
-        {showSymbol ? formatted : formatted.replace(/[^\d.,\s-]/g, "")}
-      </span>
-    );
+    return formatValue(formatted);
   }
 
-  // Get the currency symbol
   const getCurrencySymbol = () => {
-    return new Intl.NumberFormat(undefined, { style: "currency", currency })
+    return new Intl.NumberFormat(undefined, {
+      style: "currency",
+      currency: effectiveCurrency,
+    })
       .format(0)
       .replace(/[0-9.,]/g, "");
   };
 
   return (
     <span>
-      {showSymbol ? getCurrencySymbol() : ""}
+      {isToken ? "" : showSymbol ? getCurrencySymbol() : ""}
       0.0
       <span className="align-bottom text-xs font-bold">{z}</span>
       {significant}
+      {isToken ? ` ${token}` : ""}
     </span>
   );
 }
